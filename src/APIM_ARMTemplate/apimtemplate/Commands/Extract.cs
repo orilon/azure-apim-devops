@@ -3,6 +3,7 @@ using McMaster.Extensions.CommandLineUtils;
 using System.Collections.Generic;
 using Microsoft.Azure.Management.ApiManagement.ArmTemplates.Common;
 using System.Linq;
+using System.Diagnostics;
 
 namespace Microsoft.Azure.Management.ApiManagement.ArmTemplates.Extract
 {
@@ -25,6 +26,8 @@ namespace Microsoft.Azure.Management.ApiManagement.ArmTemplates.Extract
 
             this.OnExecute(async () =>
             {
+                Stopwatch sw = new Stopwatch();
+                sw.Start();
                 if (!sourceApimName.HasValue()) throw new Exception("Missing parameter <sourceApimName>.");
                 if (!destinationAPIManagementName.HasValue()) throw new Exception("Missing parameter <destinationApimName>.");
                 if (!resourceGroupName.HasValue()) throw new Exception("Missing parameter <resourceGroup>.");
@@ -104,7 +107,7 @@ namespace Microsoft.Azure.Management.ApiManagement.ArmTemplates.Extract
 
                 // write parameters to outputLocation
                 fileWriter.WriteJSONToFile(templateParameters, String.Concat(fileFolder, fileNames.parameters));
-                Console.WriteLine("Templates written to output location");
+                Console.WriteLine($"Templates written to output location, in {sw.Elapsed.ToString()}");
                 Console.WriteLine("Press any key to exit process:");
 #if DEBUG
                 Console.ReadKey();

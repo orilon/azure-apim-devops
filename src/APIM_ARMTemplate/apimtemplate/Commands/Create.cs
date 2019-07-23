@@ -3,6 +3,7 @@ using System;
 using Microsoft.Azure.Management.ApiManagement.ArmTemplates.Common;
 using System.Collections.Generic;
 using System.Linq;
+using System.Diagnostics;
 
 namespace Microsoft.Azure.Management.ApiManagement.ArmTemplates.Create
 {
@@ -20,6 +21,9 @@ namespace Microsoft.Azure.Management.ApiManagement.ArmTemplates.Create
 
             this.OnExecute(async () =>
             {
+                Stopwatch sw = new Stopwatch();
+                sw.Start();
+
                 // convert config file to CreatorConfig class
                 FileReader fileReader = new FileReader();
                 CreatorConfig creatorConfig = await fileReader.ConvertConfigYAMLToCreatorConfigAsync(configFile.Value());
@@ -130,7 +134,7 @@ namespace Microsoft.Azure.Management.ApiManagement.ArmTemplates.Create
 
                     // write parameters to outputLocation
                     fileWriter.WriteJSONToFile(templateParameters, String.Concat(creatorConfig.outputLocation, fileNames.parameters));
-                    Console.WriteLine("Templates written to output location");
+                    Console.WriteLine("Templates written to output location, in {sw.Elapsed.ToString()}");
                     Console.WriteLine("Press any key to exit process:");
 #if DEBUG
                     Console.ReadKey();
