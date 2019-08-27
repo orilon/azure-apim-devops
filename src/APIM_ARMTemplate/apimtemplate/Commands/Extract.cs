@@ -30,6 +30,7 @@ namespace Microsoft.Azure.Management.ApiManagement.ArmTemplates.Extract
                 {
                     Stopwatch sw = new Stopwatch();
                     sw.Start();
+
                     if (!sourceApimName.HasValue()) throw new Exception("Missing parameter <sourceApimName>.");
                     if (!destinationAPIManagementName.HasValue()) throw new Exception("Missing parameter <destinationApimName>.");
                     if (!resourceGroupName.HasValue()) throw new Exception("Missing parameter <resourceGroup>.");
