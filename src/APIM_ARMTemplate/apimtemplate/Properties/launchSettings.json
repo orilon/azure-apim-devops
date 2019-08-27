@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "apimtemplate": {
+      "commandName": "Project",
+      "commandLineArgs": "create --configFile ./Creator/ExampleFiles/YAMLConfigs/validTesting.yml"
+    }
+  }
+}

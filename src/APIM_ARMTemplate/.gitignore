@@ -13,6 +13,7 @@ nupkg/
 !.vscode/extensions.json
 
 # User-specific files
+*.rsuser
 *.suo
 *.user
 *.userosscache
@@ -36,3 +37,6 @@ msbuild.wrn
 
 # Visual Studio 2015
 .vs/
+
+# Local Testing
+*validTesting.yml
